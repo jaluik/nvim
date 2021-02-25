@@ -19,7 +19,40 @@ endif
 set exrc
 set secure
 set number
-
+set relativenumber
+set cursorline
+set hidden
+set noexpandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set autoindent
+set list
+set listchars=tab:\|\ ,trail:▫
+set scrolloff=4
+set ttimeoutlen=0
+set notimeout
+set viewoptions=cursor,folds,slash,unix
+set wrap
+set tw=0
+set indentexpr=
+set foldmethod=indent
+set foldlevel=99
+set foldenable
+set formatoptions-=tc
+set splitright
+set splitbelow
+set noshowmode
+set showcmd
+set wildmenu
+set ignorecase
+set smartcase
+set shortmess+=c
+set inccommand=split
+set completeopt=longest,noinsert,menuone,noselect,preview
+set ttyfast "should make scrolling faster
+set lazyredraw "same as above
+set visualbell
 
 " ===
 " === Install Plugins with Vim-Plug
@@ -27,8 +60,23 @@ set number
 
 call plug#begin('~/.config/nvim/plugged')
 
+" editor enhence
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+Plug 'gcmt/wildfire.vim'
+
+"file explore
+Plug 'junegunn/fzf.vim'
+
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" javascript, html, css and etc.
+Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+
+" Other visual enhancement
+Plug 'ryanoasis/vim-devicons'
+Plug 'wincent/terminus'
 
 " theme
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -37,6 +85,12 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'vim-airline/vim-airline'
 
 call plug#end()
+
+
+" ===
+" === FZF
+" ===
+set rtp+=/usr/local/opt/fzf
 
 " ===
 " === coc.nvim
@@ -82,6 +136,7 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap tt :CocCommand explorer<CR>
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -134,3 +189,6 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
+
+" load theme
+colorscheme dracula
