@@ -55,6 +55,44 @@ set lazyredraw "same as above
 set visualbell
 
 " ===
+" === Basic Mappings
+" ===
+" Set <LEADER> as <SPACE>, ; as :
+let mapleader=" "
+map s <NOP>
+map S :w<CR>
+map Q :q<CR>
+
+" quick add new window
+noremap sj :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+noremap sk :set splitbelow<CR>:split<CR>
+noremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+noremap sl :set splitright<CR>:vsplit<CR>
+
+" moving around cursor
+
+noremap <LEADER>w <C-w>w
+noremap <LEADER>h <C-w>h
+noremap <LEADER>j <C-w>j
+noremap <LEADER>k <C-w>k
+noremap <LEADER>l <C-w>l
+
+noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
+
+" Create a new tab with tu
+noremap te :tabe<CR>
+" Move around tabs with tn and ti
+noremap th :-tabnext<CR>
+noremap tl :+tabnext<CR>
+
+
+" don't use arrowkeys
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+" " ===
 " === Install Plugins with Vim-Plug
 " ===
 
@@ -67,12 +105,15 @@ Plug 'gcmt/wildfire.vim'
 
 "file explore
 Plug 'junegunn/fzf.vim'
+Plug 'kevinhwang91/rnvimr'
 
 " Auto Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " javascript, html, css and etc.
 Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+Plug 'leafgarland/typescript-vim'
+
 
 " Other visual enhancement
 Plug 'ryanoasis/vim-devicons'
@@ -91,6 +132,14 @@ call plug#end()
 " === FZF
 " ===
 set rtp+=/usr/local/opt/fzf
+nnoremap <C-P> :Files<CR>
+nnoremap <C-B> :Buffers<CR>
+
+" make FZF respect gitignore if `ag` is installed
+" you will obviously need to install `ag` for this to work
+if (executable('ag'))
+    let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+endif
 
 " ===
 " === coc.nvim
