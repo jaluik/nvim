@@ -65,6 +65,7 @@ let mapleader=","
 map s <NOP>
 map S :w<CR>
 map Q :q<CR>
+imap jj <ESC>c
 
 " quick add new window
 noremap sj :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
@@ -123,6 +124,7 @@ Plug 'leafgarland/typescript-vim'
 
 
 " Other visual enhancement
+Plug 'luochen1990/rainbow'
 Plug 'ryanoasis/vim-devicons'
 Plug 'wincent/terminus'
 
@@ -161,6 +163,12 @@ let g:coc_global_extensions = [
 	\ 'coc-tslint-plugin',
 	\ 'coc-tsserver',
 	\ 'coc-vimlsp']
+
+" ===
+" === rainbow
+" ===
+let g:rainbow_active = 1
+
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
