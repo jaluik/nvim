@@ -1,9 +1,11 @@
-" __  ____   __  _   ___     _____ __  __ ____   ____
-"|  \/  \ \ / / | \ | \ \   / /_ _|  \/  |  _ \ / ___|
-"| |\/| |\ V /  |  \| |\ \ / / | || |\/| | |_) | |
-"| |  | | | |   | |\  | \ V /  | || |  | |  _ <| |___
-"|_|  |_| |_|   |_| \_|  \_/  |___|_|  |_|_| \_\\____|
 
+"   _       _       _ _            _                    
+"  (_) __ _| |_   _(_) | __ __   _(_)_ __ ___  _ __ ___ 
+"  | |/ _` | | | | | | |/ / \ \ / / | '_ ` _ \| '__/ __|
+"  | | (_| | | |_| | |   <   \ V /| | | | | | | | | (__ 
+" _/ |\__,_|_|\__,_|_|_|\_\   \_/ |_|_| |_| |_|_|  \___|
+"|__/                                                   
+"
 " ===
 " === Auto load for first time uses
 " ===
@@ -19,6 +21,7 @@ endif
 set exrc
 set secure
 set number
+set syntax
 set relativenumber
 set cursorline
 set hidden
@@ -58,7 +61,7 @@ set visualbell
 " === Basic Mappings
 " ===
 " Set <LEADER> as <SPACE>, ; as :
-let mapleader=" "
+let mapleader=","
 map s <NOP>
 map S :w<CR>
 map Q :q<CR>
@@ -91,6 +94,10 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+
+
+" Return to last edit position when opening files (You want this!)
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\""
 
 " " ===
 " === Install Plugins with Vim-Plug
