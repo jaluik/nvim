@@ -131,6 +131,9 @@ Plug 'mg979/vim-xtabline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'wincent/terminus'
 
+" quick add comment 
+Plug 'tomtom/tcomment_vim'
+
 " theme
 Plug 'dracula/vim', { 'as': 'dracula' }
 
