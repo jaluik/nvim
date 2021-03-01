@@ -1,10 +1,10 @@
 
-"   _       _       _ _            _                    
-"  (_) __ _| |_   _(_) | __ __   _(_)_ __ ___  _ __ ___ 
+"   _       _       _ _
+"  (_) __ _| |_   _(_) | __ __   _(_)_ __ ___  _ __ ___
 "  | |/ _` | | | | | | |/ / \ \ / / | '_ ` _ \| '__/ __|
-"  | | (_| | | |_| | |   <   \ V /| | | | | | | | | (__ 
+"  | | (_| | | |_| | |   <   \ V /| | | | | | | | | (__
 " _/ |\__,_|_|\__,_|_|_|\_\   \_/ |_|_| |_| |_|_|  \___|
-"|__/                                                   
+"|__/
 "
 " ===
 " === Auto load for first time uses
@@ -21,7 +21,6 @@ endif
 set exrc
 set secure
 set number
-set syntax
 set relativenumber
 set cursorline
 set hidden
@@ -56,6 +55,9 @@ set completeopt=longest,noinsert,menuone,noselect,preview
 set ttyfast "should make scrolling faster
 set lazyredraw "same as above
 set visualbell
+
+" auto detect filetype
+filetype plugin indent on
 
 " ===
 " === Basic Mappings
@@ -121,10 +123,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " javascript, html, css and etc.
 Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
 Plug 'leafgarland/typescript-vim'
-
+Plug 'MaxMEllon/vim-jsx-pretty'
 
 " Other visual enhancement
 Plug 'luochen1990/rainbow'
+Plug 'mg979/vim-xtabline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'wincent/terminus'
 
@@ -169,6 +172,13 @@ let g:coc_global_extensions = [
 " ===
 let g:rainbow_active = 1
 
+" ===
+" === xtabline
+" ===
+
+let g:xtabline_settings = get(g:, 'xtabline_settings', {})
+let g:xtabline_settings.tabline_modes = ['buffers', 'tabs', 'arglist']
+let g:xtabline_settings.theme = 'dracula'
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
