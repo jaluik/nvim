@@ -59,7 +59,6 @@
 	map s <NOP>
 	map S :w<CR>
 	map Q :q<CR>
-	imap jj <ESC>c
 
 	" quick add new window
 	noremap sj :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
