@@ -1,135 +1,133 @@
 
-"   _       _       _ _
-"  (_) __ _| |_   _(_) | __ __   _(_)_ __ ___  _ __ ___
-"  | |/ _` | | | | | | |/ / \ \ / / | '_ ` _ \| '__/ __|
-"  | | (_| | | |_| | |   <   \ V /| | | | | | | | | (__
-" _/ |\__,_|_|\__,_|_|_|\_\   \_/ |_|_| |_| |_|_|  \___|
-"|__/
-"
-" ===
-" === Auto load for first time uses
-" ===
-if empty(glob('~/.config/nvim/autoload/plug.vim'))
-	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+	"   _       _       _ _
+	"  (_) __ _| |_   _(_) | __ __   _(_)_ __ ___  _ __ ___
+	"  | |/ _` | | | | | | |/ / \ \ / / | '_ ` _ \| '__/ __|
+	"  | | (_| | | |_| | |   <   \ V /| | | | | | | | | (__
+	" _/ |\__,_|_|\__,_|_|_|\_\   \_/ |_|_| |_| |_|_|  \___|
+	"|__/
+	"
+	" ===
+	" === Editor behavior
+	" ===
+	set exrc
+	set secure
+	set number
+	set relativenumber
+	set cursorline
+	set hidden
+	set noexpandtab
+	set tabstop=2
+	set shiftwidth=2
+	set softtabstop=2
+	set autoindent
+	set list
+	set listchars=tab:\|\ ,trail:▫
+	set scrolloff=4
+	set ttimeoutlen=0
+	set notimeout
+	set viewoptions=cursor,folds,slash,unix
+	set wrap
+	set tw=0
+	set indentexpr=
+	set foldmethod=indent
+	set foldlevel=99
+	set foldenable
+	set formatoptions-=tc
+	set splitright
+	set splitbelow
+	set noshowmode
+	set showcmd
+	set wildmenu
+	set ignorecase
+	set smartcase
+	set shortmess+=c
+	set inccommand=split
+	set completeopt=longest,noinsert,menuone,noselect,preview
+	set ttyfast "should make scrolling faster
+	set lazyredraw "same as above
+	set visualbell
 
-" ===
-" === Editor behavior
-" ===
-set exrc
-set secure
-set number
-set relativenumber
-set cursorline
-set hidden
-set noexpandtab
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set autoindent
-set list
-set listchars=tab:\|\ ,trail:▫
-set scrolloff=4
-set ttimeoutlen=0
-set notimeout
-set viewoptions=cursor,folds,slash,unix
-set wrap
-set tw=0
-set indentexpr=
-set foldmethod=indent
-set foldlevel=99
-set foldenable
-set formatoptions-=tc
-set splitright
-set splitbelow
-set noshowmode
-set showcmd
-set wildmenu
-set ignorecase
-set smartcase
-set shortmess+=c
-set inccommand=split
-set completeopt=longest,noinsert,menuone,noselect,preview
-set ttyfast "should make scrolling faster
-set lazyredraw "same as above
-set visualbell
+	" auto detect filetype
+	set syntax=on
+	filetype plugin indent on
 
-" auto detect filetype
-filetype plugin indent on
+	" ===
+	" === Basic Mappings
+	" ===
+	" Set <LEADER> as <SPACE>, ; as :
+	let mapleader=","
+	map s <NOP>
+	map S :w<CR>
+	map Q :q<CR>
+	imap jj <ESC>c
 
-" ===
-" === Basic Mappings
-" ===
-" Set <LEADER> as <SPACE>, ; as :
-let mapleader=","
-map s <NOP>
-map S :w<CR>
-map Q :q<CR>
-imap jj <ESC>c
+	" quick add new window
+	noremap sj :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+	noremap sk :set splitbelow<CR>:split<CR>
+	noremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+	noremap sl :set splitright<CR>:vsplit<CR>
 
-" quick add new window
-noremap sj :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-noremap sk :set splitbelow<CR>:split<CR>
-noremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-noremap sl :set splitright<CR>:vsplit<CR>
+	" moving around cursor
 
-" moving around cursor
+	noremap <LEADER>w <C-w>w
+	noremap <LEADER>h <C-w>h
+	noremap <LEADER>j <C-w>j
+	noremap <LEADER>k <C-w>k
+	noremap <LEADER>l <C-w>l
 
-noremap <LEADER>w <C-w>w
-noremap <LEADER>h <C-w>h
-noremap <LEADER>j <C-w>j
-noremap <LEADER>k <C-w>k
-noremap <LEADER>l <C-w>l
+	noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
-noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
-
-" Create a new tab with tu
-noremap te :tabe<CR>
-" Move around tabs with tn and ti
-noremap th :-tabnext<CR>
-noremap tl :+tabnext<CR>
+	" Create a new tab with tu
+	noremap te :tabe<CR>
+	" Move around tabs with tn and ti
+	noremap th :-tabnext<CR>
+	noremap tl :+tabnext<CR>
 
 
-" don't use arrowkeys
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+	" don't use arrowkeys
+	noremap <Up> <NOP>
+	noremap <Down> <NOP>
+	noremap <Left> <NOP>
+	noremap <Right> <NOP>
 
 
-" Return to last edit position when opening files (You want this!)
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\""
+	" Return to last edit position when opening files (You want this!)
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\""
 
-" " ===
-" === Install Plugins with Vim-Plug
-" ===
+	" " ===
+	" === Install Plugins with Vim-Plug
+	" ===
 
-call plug#begin('~/.config/nvim/plugged')
+	call plug#begin('~/.config/nvim/plugged')
 
-" editor enhence
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-surround'
-Plug 'gcmt/wildfire.vim'
+	" editor enhence
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'tpope/vim-surround'
+	Plug 'gcmt/wildfire.vim'
 
-"file explore
-Plug 'junegunn/fzf.vim'
-Plug 'kevinhwang91/rnvimr'
+	"file explore
+	Plug 'junegunn/fzf.vim'
+	Plug 'kevinhwang91/rnvimr'
 
-" Auto Complete
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	" Auto Complete
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" javascript, html, css and etc.
-Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-Plug 'leafgarland/typescript-vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
+	" javascript, html, css and etc.
+	Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
+	Plug 'leafgarland/typescript-vim'
+	Plug 'MaxMEllon/vim-jsx-pretty'
+	" typescript-syntax
+	Plug 'HerringtonDarkholme/yats.vim'
 
-" Other visual enhancement
-Plug 'luochen1990/rainbow'
-Plug 'mg979/vim-xtabline'
-Plug 'ryanoasis/vim-devicons'
-Plug 'wincent/terminus'
+	" Other visual enhancement
+	Plug 'luochen1990/rainbow'
+	Plug 'mg979/vim-xtabline'
+	Plug 'ryanoasis/vim-devicons'
+	Plug 'wincent/terminus'
+
+
+" vim start pannel
+Plug 'mhinz/vim-startify'
 
 " quick add comment 
 Plug 'tomtom/tcomment_vim'
@@ -175,6 +173,12 @@ let g:coc_global_extensions = [
 " ===
 let g:rainbow_active = 1
 
+
+" ===
+" ===  yats.vim
+" ===
+set re=0
+
 " ===
 " === xtabline
 " ===
@@ -203,6 +207,10 @@ if has('nvim')
 else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
+
+" use enter to auto complete
+inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+
 
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
