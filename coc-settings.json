@@ -16,10 +16,10 @@
   "javascript.referencesCodeLens.enable": true,
   "javascript.showUnused": true,
   "javascript.suggest.names": true,
-  "javascript.suggestionActions.enabled": true,
+  "javascript.suggestionActions.enabled":false,
   "json.format.enable": true,
   "explorer.icon.enableNerdfont": true,
-  "suggest.completionItemKindLabels": {
+	"suggest.completionItemKindLabels": {
     "keyword": "\uf1de",
     "variable": "\ue79b",
     "value": "\uf89f",
@@ -48,3 +48,5 @@
     "default": "\uf29c"
   }
 }
+
+
