@@ -91,7 +91,7 @@
 
 
 	" Return to last edit position when opening files (You want this!)
-	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\""
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 	" " ===
 	" === Install Plugins with Vim-Plug
@@ -103,6 +103,7 @@
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'tpope/vim-surround'
 	Plug 'gcmt/wildfire.vim'
+	Plug 'mg979/vim-visual-multi'
 
 	"file explore
 	Plug 'junegunn/fzf.vim'
@@ -112,21 +113,35 @@
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 	" javascript, html, css and etc.
+	Plug 'elzr/vim-json'
+  Plug 'neoclide/jsonc.vim'
+  Plug 'othree/html5.vim'
+  Plug 'alvan/vim-closetag'
 	Plug 'yuezk/vim-js', { 'for': ['vim-plug', 'php', 'html', 'javascript', 'css', 'less'] }
-	Plug 'leafgarland/typescript-vim'
 	Plug 'MaxMEllon/vim-jsx-pretty'
-	" typescript-syntax
-	Plug 'HerringtonDarkholme/yats.vim'
 
-	" Other visual enhancement
-	Plug 'luochen1990/rainbow'
-	Plug 'mg979/vim-xtabline'
-	Plug 'ryanoasis/vim-devicons'
-	Plug 'wincent/terminus'
+	"Markdown relate
+	Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+	Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle', 'for': ['text', 'markdown', 'vim-plug'] }
+	Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] } " add navigate title
+	Plug 'dkarter/bullets.vim' " quick add list number
+	
+
+	"typescript-syntax
+Plug 'HerringtonDarkholme/yats.vim'
+
+" term integration
+Plug 'voldikss/vim-floaterm'
+
+" Other visual enhancement
+Plug 'luochen1990/rainbow'
+Plug 'mg979/vim-xtabline'
+Plug 'ryanoasis/vim-devicons'
+Plug 'wincent/terminus'
 
 
 " vim start pannel
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 
 " quick add comment 
 Plug 'tomtom/tcomment_vim'
@@ -150,33 +165,79 @@ nnoremap <C-B> :Buffers<CR>
 " make FZF respect gitignore if `ag` is installed
 " you will obviously need to install `ag` for this to work
 if (executable('ag'))
-    let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
+	let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 endif
 
 " ===
 " === coc.nvim
 " ===
 let g:coc_global_extensions = [
-	\ 'coc-css',
-	\ 'coc-explorer',
-	\ 'coc-gitignore',
-	\ 'coc-html',
-	\ 'coc-json',
-	\ 'coc-prettier',
-	\ 'coc-tslint-plugin',
-	\ 'coc-tsserver',
-	\ 'coc-vimlsp']
+\ 'coc-css',
+\ 'coc-explorer',
+\ 'coc-gitignore',
+\ 'coc-html',
+\ 'coc-json',
+\ 'coc-prettier',
+\ 'coc-tslint-plugin',
+\ 'coc-tsserver',
+\ 'coc-vimlsp']
 
 " ===
 " === rainbow
 " ===
 let g:rainbow_active = 1
 
+" ===
+" === floatterm
+" ===
+nnoremap tn :FloatermNew<CR>
+nnoremap tl :FloatermNext<CR>
+nnoremap th :FloatermPrev<CR>
+nnoremap tm :FloatermToggle<CR>
+tnoremap <C-t> <C-\><C-n>:FloatermToggle<CR>
+tnoremap <C-l> <C-\><C-n>:FloatermNext<CR>
+tnoremap <C-h> <C-\><C-n>:FloatermPrev<CR>
+tnoremap <C-n> <C-\><C-n>:FloatermNew<CR>
+
+
 
 " ===
 " ===  yats.vim
 " ===
 set re=0
+
+" ===
+" === vim-instant-markdown
+" ===
+let g:instant_markdown_slow = 0
+let g:instant_markdown_autostart = 0
+" let g:instant_markdown_open_to_the_world = 1
+" let g:instant_markdown_allow_unsafe_content = 1
+" let g:instant_markdown_allow_external_content = 0
+" let g:instant_markdown_mathjax = 1
+let g:instant_markdown_autoscroll = 1
+
+" ===
+" === Bullets.vim
+" ===
+" let g:bullets_set_mappings = 0
+let g:bullets_enabled_file_types = [
+			\ 'markdown',
+			\ 'text',
+			\ 'gitcommit',
+			\ 'scratch'
+			\]
+
+" ===
+" === vim-markdown-toc
+" ===
+"let g:vmt_auto_update_on_save = 0
+"let g:vmt_dont_insert_fence = 1
+let g:vmt_cycle_list_item_markers = 1
+let g:vmt_fence_text = 'TOC'
+let g:vmt_fence_closing_text = '/TOC'
+
+
 
 " ===
 " === xtabline
@@ -190,8 +251,8 @@ let g:xtabline_settings.theme = 'dracula'
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
+		\ pumvisible() ? "\<C-n>" :
+		\ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
@@ -235,6 +296,7 @@ function! s:show_documentation()
   endif
 endfunction
 
+
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
@@ -273,6 +335,24 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
+
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " load theme
 colorscheme dracula
