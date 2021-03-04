@@ -104,6 +104,7 @@
 	Plug 'tpope/vim-surround'
 	Plug 'gcmt/wildfire.vim'
 	Plug 'mg979/vim-visual-multi'
+	Plug 'easymotion/vim-easymotion'
 
 	"file explore
 	Plug 'junegunn/fzf.vim'
@@ -128,32 +129,32 @@
 	
 
 	"typescript-syntax
-Plug 'HerringtonDarkholme/yats.vim'
+	Plug 'HerringtonDarkholme/yats.vim'
 
 " term integration
-Plug 'voldikss/vim-floaterm'
+	Plug 'voldikss/vim-floaterm'
 
 " Other visual enhancement
-Plug 'luochen1990/rainbow'
-Plug 'mg979/vim-xtabline'
-Plug 'ryanoasis/vim-devicons'
-Plug 'wincent/terminus'
+	Plug 'luochen1990/rainbow'
+	Plug 'mg979/vim-xtabline'
+	Plug 'ryanoasis/vim-devicons'
+	Plug 'wincent/terminus'
 
 
 " vim start pannel
 " Plug 'mhinz/vim-startify'
 
 " quick add comment 
-Plug 'tomtom/tcomment_vim'
-
+	Plug 'tomtom/tcomment_vim'
+ 
 " theme
-Plug 'dracula/vim', { 'as': 'dracula' }
+	Plug 'dracula/vim', { 'as': 'dracula' }
 
 " bottom
-Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline'
 
 call plug#end()
-
+ 
 
 " ===
 " === FZF
@@ -199,9 +200,20 @@ tnoremap <C-l> <C-\><C-n>:FloatermNext<CR>
 tnoremap <C-h> <C-\><C-n>:FloatermPrev<CR>
 tnoremap <C-n> <C-\><C-n>:FloatermNew<CR>
 
-
-
 " ===
+" === vim-visual-multi
+" ===
+let g:VM_leader                     = {'default': ',', 'visual': ',', 'buffer': ','}
+let g:VM_maps                       = {}
+let g:VM_show_warnings              = 0
+let g:VM_maps['Find Under']         = '<C-n>'           " replace C-n
+let g:VM_maps['Find Subword Under'] = '<C-n>'           " replace visual C-n
+let g:VM_maps["Select Cursor Down"] = '<C-j>'      " start selecting down
+let g:VM_maps["Select Cursor Up"]   = '<C-k>'        " start selecting up
+let g:VM_maps["Skip Region"]        = 'q'
+let g:VM_maps["Remove Region"]      = 'Q'
+
+"===
 " ===  yats.vim
 " ===
 set re=0
@@ -216,6 +228,8 @@ let g:instant_markdown_autostart = 0
 " let g:instant_markdown_allow_external_content = 0
 " let g:instant_markdown_mathjax = 1
 let g:instant_markdown_autoscroll = 1
+
+
 
 " ===
 " === Bullets.vim
@@ -238,11 +252,14 @@ let g:vmt_fence_text = 'TOC'
 let g:vmt_fence_closing_text = '/TOC'
 
 
+" ===
+" === easymotion
+" ===
+nmap <LEADER><LEADER>s <Plug>(easymotion-sn)
 
 " ===
 " === xtabline
 " ===
-
 let g:xtabline_settings = get(g:, 'xtabline_settings', {})
 let g:xtabline_settings.tabline_modes = ['buffers', 'tabs', 'arglist']
 let g:xtabline_settings.theme = 'dracula'
@@ -268,8 +285,9 @@ else
   inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
-" use enter to auto complete
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" use enter to auto complete when there is a pumvisible
+inoremap <silent><expr> <cr>
+			\ !pumvisible() ? "\<cr>" : complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-n>\<C-y>" 
 
 
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
