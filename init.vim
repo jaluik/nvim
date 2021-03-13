@@ -188,6 +188,15 @@ let g:coc_global_extensions = [
 " ===
 let g:rainbow_active = 1
 
+
+" ===
+" === vim-closetag
+" ===
+let g:closetag_regions =  {
+\ 'typescript.tsx': 'jsxRegion,tsxRegion',
+\ 'javascript.jsx': 'jsxRegion',
+\ }
+
 " ===
 " === floatterm
 " ===
