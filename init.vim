@@ -127,6 +127,9 @@
 	Plug 'mzlogin/vim-markdown-toc', { 'for': ['gitignore', 'markdown', 'vim-plug'] } " add navigate title
 	Plug 'dkarter/bullets.vim' " quick add list number
 	
+  " switch zh and en
+	Plug 'lyokha/vim-xkbswitch'
+
 
 	"typescript-syntax
 	Plug 'HerringtonDarkholme/yats.vim'
@@ -169,6 +172,7 @@ if (executable('ag'))
 	let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
 endif
 
+
 " ===
 " === coc.nvim
 " ===
@@ -187,7 +191,6 @@ let g:coc_global_extensions = [
 " === rainbow
 " ===
 let g:rainbow_active = 1
-
 
 " ===
 " === vim-closetag
