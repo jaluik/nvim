@@ -19,6 +19,7 @@
   "javascript.suggest.names": true,
   "javascript.suggestionActions.enabled":false,
   "json.format.enable": true,
+	"snippets.ultisnips.usePythonx": false,
   "explorer.icon.enableNerdfont": true,
 	"suggest.completionItemKindLabels": {
     "keyword": "\uf1de",

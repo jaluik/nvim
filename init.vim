@@ -110,8 +110,10 @@
 	Plug 'junegunn/fzf.vim'
 	Plug 'kevinhwang91/rnvimr'
 
+	if !exists('g:vscode')
 	" Auto Complete
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+		Plug 'neoclide/coc.nvim',  {'branch': 'release'}
+	endif 
 
 	" javascript, html, css and etc.
 	Plug 'elzr/vim-json'
@@ -186,6 +188,8 @@ let g:coc_global_extensions = [
 \ 'coc-tslint-plugin',
 \ 'coc-tsserver',
 \ 'coc-vimlsp']
+
+let g:coc_node_path = '~/.nvm/versions/node/v14.17.5/bin/node'
 
 " ===
 " === rainbow
