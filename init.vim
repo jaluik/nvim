@@ -83,11 +83,13 @@
 	noremap tl :+tabnext<CR>
 
 
+	if !exists('g:vscode')
 	" don't use arrowkeys
-	noremap <Up> <NOP>
-	noremap <Down> <NOP>
-	noremap <Left> <NOP>
-	noremap <Right> <NOP>
+		noremap <Up> <NOP>
+		noremap <Down> <NOP>
+		noremap <Left> <NOP>
+		noremap <Right> <NOP>
+	endif
 
 
 	" Return to last edit position when opening files (You want this!)
