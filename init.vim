@@ -92,8 +92,10 @@
 	endif
 
 
+	if !exists('g:vscode')
 	" Return to last edit position when opening files (You want this!)
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+		au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+	endif
 
 	" " ===
 	" === Install Plugins with Vim-Plug
@@ -115,7 +117,6 @@
 	if !exists('g:vscode')
 	" Auto Complete
 		Plug 'neoclide/coc.nvim',  {'branch': 'release'}
-	endif 
 
 	" javascript, html, css and etc.
 	Plug 'elzr/vim-json'
@@ -146,6 +147,8 @@
 	Plug 'mg979/vim-xtabline'
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'wincent/terminus'
+	endif 
+
 
 
 " vim start pannel
