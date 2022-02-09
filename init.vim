@@ -104,19 +104,22 @@
 	call plug#begin('~/.config/nvim/plugged')
 
 	" editor enhence
-	Plug 'jiangmiao/auto-pairs'
 	Plug 'tpope/vim-surround'
 	Plug 'gcmt/wildfire.vim'
 	Plug 'mg979/vim-visual-multi'
 	Plug 'easymotion/vim-easymotion'
 
+
+	if !exists('g:vscode')
+	" editor enhence
+	Plug 'jiangmiao/auto-pairs'
+
 	"file explore
 	Plug 'junegunn/fzf.vim'
 	Plug 'kevinhwang91/rnvimr'
-
-	if !exists('g:vscode')
+	
 	" Auto Complete
-		Plug 'neoclide/coc.nvim',  {'branch': 'release'}
+	Plug 'neoclide/coc.nvim',  {'branch': 'release'}
 
 	" javascript, html, css and etc.
 	Plug 'elzr/vim-json'
@@ -147,10 +150,7 @@
 	Plug 'mg979/vim-xtabline'
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'wincent/terminus'
-	endif 
-
-
-
+	
 " vim start pannel
 " Plug 'mhinz/vim-startify'
 
@@ -162,6 +162,10 @@
 
 " bottom
 	Plug 'vim-airline/vim-airline'
+	endif 
+
+
+
 
 call plug#end()
  
@@ -393,5 +397,8 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-" load theme
-colorscheme dracula
+
+if !exists('g:vscode')
+	" load theme
+	colorscheme dracula
+endif
