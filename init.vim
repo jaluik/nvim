@@ -56,7 +56,6 @@
 	" ===
 	" Set <LEADER> as <SPACE>, ; as :
 	let mapleader=","
-	map s <NOP>
 	map S :w<CR>
 	map Q :q<CR>
 
@@ -198,7 +197,7 @@ let g:coc_global_extensions = [
 \ 'coc-tsserver',
 \ 'coc-vimlsp']
 
-let g:coc_node_path = '~/.nvm/versions/node/v14.17.5/bin/node'
+let g:coc_node_path = '/Users/jaluik/.nvm/versions/node/v16.15.0/bin/node'
 
 " ===
 " === rainbow
